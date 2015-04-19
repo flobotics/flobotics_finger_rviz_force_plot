@@ -1,0 +1,10 @@
+<library path="lib/libflobotics_finger_rviz_force_plot">
+    <class name="Flobotics/Flobotics_finger_rviz_force_plot"
+           type="flobotics_finger_rviz_force_plot::FloboticsFingerForcePlotDisplay"
+           base_class_type="rviz::Display">
+        <description>
+            Force plot display
+        </description>
+    </class>
+    
+</library>
