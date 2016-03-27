@@ -109,7 +109,7 @@ namespace flobotics_finger_rviz_force_plot
       "enable auto scale",
       this, SLOT(updateAutoScale()));
     max_value_property_ = new rviz::FloatProperty(
-      "max value", 1023.0,
+      "max value", 1100.0,
       "max value, used only if auto scale is disabled",
       this, SLOT(updateMaxValue()));
     min_value_property_ = new rviz::FloatProperty(
@@ -446,21 +446,21 @@ namespace flobotics_finger_rviz_force_plot
 
     double adc_val=0.0;
     if(selected_adc_==0)
-      adc_val = msg.data[0];
+      adc_val = (1100 / 5) *  msg.data[0];
     else if(selected_adc_==1)
-      adc_val = msg.data[1];
+      adc_val = (1100 / 5) * msg.data[1];
     else if(selected_adc_==2)
-      adc_val = msg.data[2];
+      adc_val = (1100 / 5) * msg.data[2];
     else if(selected_adc_==3)
-      adc_val = msg.data[3];
+      adc_val = (1100 / 5) * msg.data[3];
     else if(selected_adc_==4)
-      adc_val = msg.data[4];
+      adc_val = (1100 / 5) * msg.data[4];
     else if(selected_adc_==5)
-      adc_val = msg.data[5];
+      adc_val = (1100 / 5) * msg.data[5];
     else if(selected_adc_==6)
-      adc_val = msg.data[6];
+      adc_val = (1100 / 5) * msg.data[6];
     else if(selected_adc_==7)
-       adc_val = msg.data[7];
+       adc_val = (1100 / 5) * msg.data[7];
 
     buffer_[buffer_length_ - 1] = adc_val;
     if (min_value > adc_val) {
