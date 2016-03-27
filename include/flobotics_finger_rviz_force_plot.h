@@ -48,6 +48,9 @@
 #include <rviz/properties/enum_property.h>
 #include <flobotics_finger_messages/flobotics_finger_force_adc_values.h>
 #include <flobotics_finger_messages/flobotics_finger_force_limit_values.h>
+#include <std_msgs/Float32MultiArray.h>
+#include <std_msgs/MultiArrayLayout.h>
+#include <std_msgs/MultiArrayDimension.h>
 
 namespace flobotics_finger_rviz_force_plot
 {
@@ -73,7 +76,7 @@ namespace flobotics_finger_rviz_force_plot
     virtual void initializeBuffer();
     virtual void onInitialize();
     //virtual void processMessage(const std_msgs::Float32::ConstPtr& msg);
-    virtual void processMessage(const flobotics_finger_messages::flobotics_finger_force_adc_values& msg);
+    virtual void processMessage(const std_msgs::Float32MultiArray& msg);
     virtual void processForceLimitsMessage(const flobotics_finger_messages::flobotics_finger_force_limit_values& msg);
     virtual void drawPlot();
     ////////////////////////////////////////////////////////

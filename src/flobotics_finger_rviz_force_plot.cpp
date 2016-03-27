@@ -46,9 +46,9 @@ namespace flobotics_finger_rviz_force_plot
     : rviz::Display(), min_value_(0.0), max_value_(0.0), force_limit_max_(50), force_limit_min_(25), selected_adc_(0), select_finger_limit_(0)
   {
     update_topic_property_ = new rviz::RosTopicProperty(
-      "adc Topic", "adc",
-      ros::message_traits::datatype<std_msgs::Float32>(),
-      "std_msgs::Float32 topic to subscribe to.",
+      "adc Topic", "adc_plus_pi_pub",
+      ros::message_traits::datatype<std_msgs::Float32MultiArray>(),
+      "std_msgs::Float32MultiArray topic to subscribe to.",
       this, SLOT(updateTopic()));
     select_adc_property_ = new rviz::EnumProperty(
         "Select ADC", "adc0", "select adc from msg",
@@ -417,7 +417,7 @@ namespace flobotics_finger_rviz_force_plot
     }
   }
 
-  void FloboticsFingerForcePlotDisplay::processMessage(const flobotics_finger_messages::flobotics_finger_force_adc_values& msg)
+  void FloboticsFingerForcePlotDisplay::processMessage(const std_msgs::Float32MultiArray& msg)
   {
     boost::mutex::scoped_lock lock(mutex_);
 
@@ -444,23 +444,23 @@ namespace flobotics_finger_rviz_force_plot
 //      max_value = msg->data;
 //    }
 
-    double adc_val=0;
+    double adc_val=0.0;
     if(selected_adc_==0)
-      adc_val = msg.adc0;
+      adc_val = msg.data[0];
     else if(selected_adc_==1)
-      adc_val = msg.adc1;
+      adc_val = msg.data[1];
     else if(selected_adc_==2)
-      adc_val = msg.adc2;
+      adc_val = msg.data[2];
     else if(selected_adc_==3)
-      adc_val = msg.adc3;
+      adc_val = msg.data[3];
     else if(selected_adc_==4)
-      adc_val = msg.adc4;
+      adc_val = msg.data[4];
     else if(selected_adc_==5)
-      adc_val = msg.adc5;
+      adc_val = msg.data[5];
     else if(selected_adc_==6)
-      adc_val = msg.adc6;
+      adc_val = msg.data[6];
     else if(selected_adc_==7)
-       adc_val = msg.adc7;
+       adc_val = msg.data[7];
 
     buffer_[buffer_length_ - 1] = adc_val;
     if (min_value > adc_val) {
